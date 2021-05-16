@@ -17,5 +17,9 @@ script:
 #   local_dir: build
 #   on:
 #     branch: sensei
-after_script:
-- gulp deploy --host $FTP_HOST --user $FTP_USER --password $FTP_PASSWORD
+
+# after_script:
+# - gulp deploy --host $FTP_HOST --user $FTP_USER --password $FTP_PASSWORD
+
+after_success:
+- find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftp://${FTP_HOST} --user ${FTP_USER}:${FTP_PASSWORD} \;
