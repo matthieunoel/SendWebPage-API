@@ -1,3 +1,6 @@
+branches:
+  only:
+    - pre-prod
 language: node_js
 node_js:
   - "stable"
@@ -7,10 +10,10 @@ cache:
 script:
   - npm run build
   - npm run test
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $github_token
-  local_dir: build
-  on:
-    branch: sensei
+# deploy:
+#   provider: pages
+#   skip_cleanup: true
+#   github_token: $github_token
+#   local_dir: build
+#   on:
+#     branch: sensei
