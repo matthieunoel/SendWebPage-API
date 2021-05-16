@@ -17,3 +17,5 @@ script:
 #   local_dir: build
 #   on:
 #     branch: sensei
+after_script:
+- gulp deploy --host $FTP_HOST --user $FTP_USER --password $FTP_PASSWORD
