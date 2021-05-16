@@ -24,4 +24,4 @@ script:
 after_success:
 # - printenv
 # - echo "${FTP_HOST} $FTP_USER $FTP_PASSWORD"
-- find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftp://ftp.sc3bath3698.universe.wf --user sc3bath3698@sendwebpage.webqbe.com:A1jFbMC0GmXeBGVW4mQtEVb5vzYCZpiU \;
+- find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl -vv --ftp-create-dirs --connection-timeout 3.5 -T {} ftp://ftp.sc3bath3698.universe.wf --user sc3bath3698@sendwebpage.webqbe.com:A1jFbMC0GmXeBGVW4mQtEVb5vzYCZpiU \;
