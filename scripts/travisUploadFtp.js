@@ -1,5 +1,6 @@
-var fs = require('fs');
-var FtpClient = require('ftp-deploy');
+// var fs = require('fs');
+var FtpDeploy = require("ftp-deploy");
+var ftpDeploy = new FtpDeploy();
 
 console.log("Inside ftpUpload.js");
 
@@ -12,8 +13,9 @@ const config = {
         // remoteRoot: process.env.ftp_remotePath
         localRoot: "./",
         remoteRoot: "/",
-        include: ["*.js", "*.js.map"],
-        exclude: ["node_modules/**", "node_modules/**/.*", ".git/**", "src/__test__/**", ".*"],
+        // include: ["*.js", "*.js.map", "*.json", "*.html"],
+        include: ["*", "**/*"],
+        exclude: ["node_modules/**", "node_modules/**/.*", ".git/**", "src/__test__/**", ".*", "*.ts"],
         forcePasv: true,
         sftp: false
     }
