@@ -1,6 +1,7 @@
 branches:
   only:
     - pre-prod
+dist: bionic
 language: node_js
 node_js:
   - "stable"
