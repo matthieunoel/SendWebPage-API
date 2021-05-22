@@ -25,9 +25,9 @@ const config = () => {
         remoteRoot: "/",
         // include: ["*.js", "*.js.map", "*.json", "*.html"],
         include: ["*", "**/*"],
-        exclude: ["node_modules/**", "node_modules/**/.*", ".git/**", "src/__test__/**", ".*", "*.ts"],
-        // sftp: false,
-        // forcePasv: true,
+        exclude: ["node_modules/**", "node_modules/**/.*", "node_modules/**/.*/**", ".git/**", "src/__test__/**", ".*", "*.ts"],
+        sftp: false,
+        forcePasv: true,
     }
 }
 
@@ -39,21 +39,18 @@ else {
     // uploadToFTP();
 
     console.log("# ftp.host :", config().host);
-    console.log("# ftp.username :", config().username);
+    console.log("# ftp.user :", config().user);
     console.log("# ftp.password.length :", config().password.length);
     console.log("# ftp.localRoot :", config().localRoot);
     console.log("# ftp.remoteRoot :", config().remoteRoot);
     console.log("# ftp.port :", config().port);
-    console.log("# ftp :", config())
+    // console.log("# ftp :", config())
 
     ftpDeploy.on("uploading", function(data) {
-        console.log(`Uploading ${data.filename} (${data.transferredFileCount}/${data.totalFilesCount})`)
-    });
-    ftpDeploy.on("uploaded", function(data) {
-        console.log(`Upload complete on ${data.filename} (${data.transferredFileCount}/${data.totalFilesCount})`)
+        console.log(`(${Math.floor(( data.transferredFileCount / data.totalFilesCount ) * 100)}%) - Uploading ${data.filename} ...`)
     });
     ftpDeploy.on("upload-error", function(data) {
-        console.warn(`Upload error on ${data.filename} (${data.transferredFileCount}/${data.totalFilesCount}) - `, data)
+        console.warn(`Upload error on ${data.filename} - `, data)
     });
 
     ftpDeploy
