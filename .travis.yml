@@ -1,6 +1,6 @@
-branches:
-  only:
-    - pre-prod
+# branches:
+#   only:
+#     - pre-prod
 dist: bionic
 language: node_js
 node_js:

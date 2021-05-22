@@ -2,21 +2,34 @@
 var FtpDeploy = require("ftp-deploy");
 var ftpDeploy = new FtpDeploy();
 
-console.log("Inside ftpUpload.js");
+console.log("Starting FTP deployement");
 
-const config = {
+const config = () => { 
+    return {
         host: process.env.FTP_HOST,
+        // host: "localhost",
+        // host: "ftp.sc3bath3698.universe.wf",
+        // host: "test.rebex.net",
         port: 21,
-        username: process.env.FTP_USER,
+        // port: 22,
+        user: process.env.FTP_USER,
+        // user: "sc3bath3698@sendwebpage.webqbe.com",
+        // user: "travis@webqbe.com",
+        // user: "travis",
+        // user: "demo",
         password: process.env.FTP_PASSWORD,
-        // localRoot: process.env.ftp_localPath,
-        // remoteRoot: process.env.ftp_remotePath
+        // password: "A1jFbMC0GmXeBGVW4mQtEVb5vzYCZpiU",
+        // password: "A1jFbA1jFb",
+        // password: "password",
         localRoot: "./",
         remoteRoot: "/",
         // include: ["*.js", "*.js.map", "*.json", "*.html"],
         include: ["*", "**/*"],
-        exclude: ["node_modules/**", "node_modules/**/.*", ".git/**", "src/__test__/**", ".*", "*.ts"]
+        exclude: ["node_modules/**", "node_modules/**/.*", ".git/**", "src/__test__/**", ".*", "*.ts"],
+        // sftp: false,
+        // forcePasv: true,
     }
+}
 
 
 if (process === null) {
@@ -25,13 +38,13 @@ if (process === null) {
 else {
     // uploadToFTP();
 
-    console.log("# ftp.host :", config.host);
-    console.log("# ftp.username :", config.username);
-    console.log("# ftp.password.length :", config.password.length);
-    console.log("# ftp.localRoot :", config.localRoot);
-    console.log("# ftp.remoteRoot :", config.remoteRoot);
-    console.log("# ftp.port :", config.port);
-    console.log("# ftp :", config)
+    console.log("# ftp.host :", config().host);
+    console.log("# ftp.username :", config().username);
+    console.log("# ftp.password.length :", config().password.length);
+    console.log("# ftp.localRoot :", config().localRoot);
+    console.log("# ftp.remoteRoot :", config().remoteRoot);
+    console.log("# ftp.port :", config().port);
+    console.log("# ftp :", config())
 
     ftpDeploy.on("uploading", function(data) {
         console.log(`Uploading ${data.filename} (${data.transferredFileCount}/${data.totalFilesCount})`)
@@ -44,7 +57,7 @@ else {
     });
 
     ftpDeploy
-    .deploy(config)
+    .deploy(config())
     .then(res => console.log("ftpDeploy done :", res))
     .catch(err => console.error('Error while deploying (ftpDeploy) :', err));
 }
