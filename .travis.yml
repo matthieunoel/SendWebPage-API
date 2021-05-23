@@ -22,8 +22,4 @@ script:
 
 after_success:
 - npm run deployFTP
-# - find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl -vv --ftp-create-dirs -T "{}" "ftp://ftp.sc3bath3698.universe.wf" --user "sc3bath3698@sendwebpage.webqbe.com:A1jFbMC0GmXeBGVW4mQtEVb5vzYCZpiU" \;a
-# - find . \( -path "./.*" -o -path "./node_modules" -o -name "*.ts" -o -path "./src/__test__/*.*" \) -prune -o -type f -path "./*" -print
-# - curl --silent -p --insecure  "ftp://$FTP_HOST" --user "$FTP_USER:$FTP_PASSWORD" -T "README.md" --ftp-create-dirs
-# - curl -p --insecure  --progress-bar --ipv4 --connect-timeout 8 "ftp://$FTP_HOST" --max-time 120 --retry 4 --ftp-ssl --disable-epsv --ftp-pasv --user "$FTP_USER:$FTP_PASSWORD" -T "README.md" --ftp-create-dirs
 # - find . \( -path "./.*" -o -path "./node_modules" -o -name "*.ts" -o -path "./src/__test__/*.*" \) -prune -o -type f -path "./*" -print -exec curl --progress-bar --ipv4 --ftp-ssl --disable-epsv --ftp-pasv --insecure --connect-timeout 5 "ftp://$FTP_HOST" --max-time 30 --retry 20 --user "$FTP_USER:$FTP_PASSWORD" -T "{}" --ftp-create-dirs \;
