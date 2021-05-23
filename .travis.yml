@@ -1,25 +1,16 @@
-# branches:
-#   only:
-#     - pre-prod
+branches:
+  only:
+    - pre-prod
 dist: bionic
 language: node_js
 node_js:
-  - "stable"
+  - "14.16.1"
 cache:
   directories:
   - node_modules
 script:
   - npm run build
   - npm run test
-
-# deploy:
-#   provider: pages
-#   skip_cleanup: true
-#   github_token: $github_token
-#   local_dir: build
-#   on:
-#     branch: sensei
-
 after_success:
 - npm run deployFTP
 # - find . \( -path "./.*" -o -path "./node_modules" -o -name "*.ts" -o -path "./src/__test__/*.*" \) -prune -o -type f -path "./*" -print -exec curl --progress-bar --ipv4 --ftp-ssl --disable-epsv --ftp-pasv --insecure --connect-timeout 5 "ftp://$FTP_HOST" --max-time 30 --retry 20 --user "$FTP_USER:$FTP_PASSWORD" -T "{}" --ftp-create-dirs \;

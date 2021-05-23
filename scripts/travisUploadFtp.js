@@ -6,16 +6,13 @@ console.log("Starting FTP deployement");
 const config = () => { 
     return {
         host: process.env.FTP_HOST,
-        // host: "ftp.sc3bath3698.universe.wf",
         port: 21,
         user: process.env.FTP_USER,
-        // user: "travis@webqbe.com",
         password: process.env.FTP_PASSWORD,
-        // password: "A1jFbA1jFb",
         localRoot: "./",
         remoteRoot: "/",
         include: ["*", "**/*"],
-        exclude: ["node_modules/**", "node_modules/**/.*", "node_modules/**/.*/**", ".git/**", "src/__test__/**", ".*", "*.ts"],
+        exclude: ["node_modules/**", "node_modules/**/.*", "node_modules/**/.*/**", ".git/**", "scripts/**", ".vscode/**", "*.log", "src/__test__/**", "*.ts"],
         sftp: false,
         forcePasv: true,
     }
